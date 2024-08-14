@@ -64,3 +64,5 @@ HAVING
 ORDER BY 
   max_streak_length DESC;
 This command selects the user_id and the maximum streak length, groups the result by the individual IDs, then selects only the users who achieved a streak of 30 days or longer, and orders them in descending order.
+
+end
