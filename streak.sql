@@ -47,3 +47,20 @@ CREATE TEMPORARY TABLE streaks_new AS (
     user_id, streak_created
 );
 Streak lengths are calculated based on whether the current user matches the previous one and if the user's streak is still active. If the conditions are met, the streak count increases; otherwise, it’s reset to 0.
+
+Step 4: Identify the Top Performers:
+
+Having identified the longest streak for each user, we can pull all streaks with length 30 or more. We will do so using the temporary table streaks_new with the help of the following code:
+
+SELECT 
+  user_id,
+  MAX(streak_length) AS max_streak_length
+FROM 
+  streaks_new
+GROUP BY 
+  user_id
+HAVING
+	MAX(streak_length) >= 30
+ORDER BY 
+  max_streak_length DESC;
+This command selects the user_id and the maximum streak length, groups the result by the individual IDs, then selects only the users who achieved a streak of 30 days or longer, and orders them in descending order.
